@@ -8,6 +8,7 @@ const {spawn} = require('child_process');
 //function that represents the express module
 //best practice to call it app
 const app = express();
+app.use('/public', express.static(__dirname + "/public"));
 
 const inputs= [];
 
@@ -36,16 +37,18 @@ app.post("/", function(req, res) { //takes input and stores it in the array
   var dataToSend = input;
  // spawn new child process to call the python script
     const python = spawn('python', ['problem_chooser.py', input]); //spawns a child process
+
  // collect data from script
     python.stdout.on('data', function (data) {
       console.log('Pipe data from python script ...');
-      dataToSend = data.toString();
+      python.exec('problem_chooser.py');
+
  });
  // in close event we are sure that stream from child process is closed
  python.on('close', (code) => {
  console.log(`child process close all stdio with code ${code}`);
  // send data to browser
- res.send(dataToSend)
+ res.sendFile("/Users/ariella/Desktop/my-express-server/t.html");
  });
     //call python script Here
     //inputs.push(input);

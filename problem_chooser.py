@@ -1,6 +1,9 @@
-import sys
+import os,subprocess,sys
+from PIL import Image
 
-#caller function that accepts a string and a callback function
-def handle_request(input, callback):
-    callback(input)
-print(handle_request(sys.argv[1]))
+if subprocess.call("./a.out") == 0:
+    try:
+        img  = Image.open("./photo1.png")
+        img.show()
+    except IOError:
+        pass
