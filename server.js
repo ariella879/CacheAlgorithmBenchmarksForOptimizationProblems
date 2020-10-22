@@ -48,7 +48,7 @@ app.post("/", function(req, res) { //takes input and stores it in the array
  python.on('close', (code) => {
  console.log(`child process close all stdio with code ${code}`);
  // send data to browser
- res.sendFile("/Users/ariella/Desktop/my-express-server/t.html");
+ res.sendFile(__dirname, './t.html');
  });
     //call python script Here
     //inputs.push(input);
