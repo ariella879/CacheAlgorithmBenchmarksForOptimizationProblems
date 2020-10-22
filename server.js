@@ -4,11 +4,12 @@ const express = require("express"); //require and incorporate express
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const {spawn} = require('child_process');
+const path = require('path');
 
 //function that represents the express module
 //best practice to call it app
 const app = express();
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname));
 
 const inputs= [];
 
@@ -48,7 +49,7 @@ app.post("/", function(req, res) { //takes input and stores it in the array
  python.on('close', (code) => {
  console.log(`child process close all stdio with code ${code}`);
  // send data to browser
- res.sendFile(__dirname, './t.html');
+ res.sendFile(path.join(__dirname, './public', 't.html'))
  });
     //call python script Here
     //inputs.push(input);
