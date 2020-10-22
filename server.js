@@ -8,7 +8,7 @@ const {spawn} = require('child_process');
 //function that represents the express module
 //best practice to call it app
 const app = express();
-app.use('/public', express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/public"));
 
 const inputs= [];
 
