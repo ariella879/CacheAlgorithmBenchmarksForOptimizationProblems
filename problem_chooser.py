@@ -1,9 +1,15 @@
 import os,subprocess,sys
-from PIL import Image
+import html
 
+image_name_and_location = "./public/photo1.png"
+opening_boilerplate = '<html><head></head><body>'
+image_tag = '<img src= "'
+image_ending = ' ">'
+end = "</body></html>"
 if subprocess.call("./a.out") == 0:
-    try:
-        img  = Image.open("./photo1.png")
-        img.show()
-    except IOError:
-        pass
+    f = open("t.html", "w")
+    f.write(opening_boilerplate)
+    f.write(image_tag)
+    f.write(image_name_and_location)
+    f.write(image_ending)
+    f.write(end)

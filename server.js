@@ -16,7 +16,7 @@ const inputs= [];
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static("public")); //css style
+//app.use(express.static("public")); //css style
 
 //Get request when the browser interacts with server it will be able to Get
 //something back
@@ -49,7 +49,7 @@ app.post("/", function(req, res) { //takes input and stores it in the array
  python.on('close', (code) => {
  console.log(`child process close all stdio with code ${code}`);
  // send data to browser
- res.sendFile(path.join(__dirname, './public', 't.html'))
+ res.sendFile("/Users/ariella/Desktop/MyProj/polar-anchorage-92883/t.html");
  });
     //call python script Here
     //inputs.push(input);
