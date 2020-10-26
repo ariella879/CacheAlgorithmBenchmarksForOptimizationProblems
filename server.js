@@ -48,7 +48,10 @@ app.post("/", function(req, res) { //takes input and stores it in the array
 
  python.on('close', (code) => {
 
- res.sendFile("/Users/ariella/Desktop/MyProj/polar-anchorage-92883/t.html");
+
+res.sendFile('/polar-anchorage-92883/t.html')
+
+
  });
     //call python script Here
     //inputs.push(input);
