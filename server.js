@@ -41,14 +41,13 @@ app.post("/", function(req, res) { //takes input and stores it in the array
 
  // collect data from script
     python.stdout.on('data', function (data) {
-    //  console.log('Pipe data from python script ...');
+
       python.exec('problem_chooser.py');
 
  });
- // in close event we are sure that stream from child process is closed
+
  python.on('close', (code) => {
- //console.log(`child process close all stdio with code ${code}`);
- // send data to browser
+
  res.sendFile("/Users/ariella/Desktop/MyProj/polar-anchorage-92883/t.html");
  });
     //call python script Here
@@ -63,5 +62,5 @@ app.post("/", function(req, res) { //takes input and stores it in the array
 //listen on a specific port for any http requests with a callback
 //anonymous function callback using a console log
 app.listen(process.env.PORT || 3000, function(){
-  console.log("Server started on port 3000"); //will appear on terminal
+   //will appear on terminal
 });
