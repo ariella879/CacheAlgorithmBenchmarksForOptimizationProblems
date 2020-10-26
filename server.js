@@ -9,7 +9,7 @@ const path = require('path');
 //function that represents the express module
 //best practice to call it app
 const app = express();
-app.use(express.static(__dirname));
+app.use(express.static("public"))
 
 const inputs= [];
 
@@ -44,13 +44,15 @@ app.post("/", function(req, res) { //takes input and stores it in the array
 
       python.exec('problem_chooser.py');
 
+
  });
 
  python.on('close', (code) => {
 
 
-res.sendFile('./t.html')
-
+   app.get("/", function (req, res) {
+     res.sendFile("/Users/ariella/Desktop/MyProj/polar-anchorage-92883/public/t.html")
+   })
 
  });
     //call python script Here
