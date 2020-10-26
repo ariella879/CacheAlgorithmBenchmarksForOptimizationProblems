@@ -49,7 +49,7 @@ app.post("/", function(req, res) { //takes input and stores it in the array
  python.on('close', (code) => {
 
 
-res.sendFile('/polar-anchorage-92883/t.html')
+res.sendFile('./t.html')
 
 
  });
