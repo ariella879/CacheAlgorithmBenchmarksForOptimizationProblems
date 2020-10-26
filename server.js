@@ -46,7 +46,7 @@ app.post("/", function(req, res) { //takes input and stores it in the array
 
 
  });
- res.sendFile("/Users/ariella/Desktop/MyProj/polar-anchorage-92883/public/t.html");
+ res.sendFile(path.join(__dirname, 'public', 't.html'));
  python.on('close', (code) => {
 
 });
