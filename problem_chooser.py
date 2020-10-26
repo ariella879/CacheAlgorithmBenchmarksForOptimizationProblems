@@ -1,7 +1,7 @@
 import os,subprocess,sys
 import html
 
-image_name_and_location = "/Users/ariella/Desktop/MyProj/polar-anchorage-92883/public/photo1.png"
+image_name_and_location = "./public/photo1.png"
 opening_boilerplate = '<html><head></head><body>'
 image_tag = '<img src= "'
 image_ending = ' ">'

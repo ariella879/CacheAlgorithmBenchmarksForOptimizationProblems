@@ -41,15 +41,15 @@ app.post("/", function(req, res) { //takes input and stores it in the array
 
  // collect data from script
     python.stdout.on('data', function (data) {
-      console.log('Pipe data from python script ...');
+    //  console.log('Pipe data from python script ...');
       python.exec('problem_chooser.py');
 
  });
  // in close event we are sure that stream from child process is closed
  python.on('close', (code) => {
- console.log(`child process close all stdio with code ${code}`);
+ //console.log(`child process close all stdio with code ${code}`);
  // send data to browser
- res.sendFile("./t.html");
+ res.sendFile("/Users/ariella/Desktop/MyProj/polar-anchorage-92883/t.html");
  });
     //call python script Here
     //inputs.push(input);
