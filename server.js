@@ -50,9 +50,9 @@ app.post("/", function(req, res) { //takes input and stores it in the array
  python.on('close', (code) => {
 
 
-   app.get("/", function (req, res) {
-     res.sendFile(path.join(__dirname, '../public', 't.html'));
-   })
+   //app.get("/", function (req, res) {
+ res.sendFile(path.join(__dirname, '../public', 't.html'));
+  // })
 
  });
     //call python script Here
