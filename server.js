@@ -9,7 +9,7 @@ const path = require('path');
 //function that represents the express module
 //best practice to call it app
 const app = express();
-app.use(express.static('public'))
+app.use(express.static(__dirname))
 
 const inputs= [];
 
@@ -25,6 +25,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 //function is callback function "/" home route "function()": what to do
 //response: response server can make when request gets triggered
 //FROM SERVER TO BROWSER
+
 app.get("/", function(req, res){ //sends mainpage to browser
   res.render("mainpage"); //send browser response
 });
@@ -33,21 +34,27 @@ app.get("/", function(req, res){ //sends mainpage to browser
 app.post("/", function(req, res) { //takes input and stores it in the array
 
   var input = req.body.input;
+  var dataFromPython = '';
 
   if(req.body.input){ //if user enters information
-  var dataToSend = input;
+
  // spawn new child process to call the python script
-    const python = spawn('python', ['problem_chooser.py', input]); //spawns a child process
+    const child_obj = spawn('python', ['problem_chooser.py', input]); //spawns a child process
 
  // collect data from script
-    python.stdout.on('data', function (data) {
 
-    python.exec('problem_chooser.py');
+  child_obj.stdout.on('data', function (data) {
+  	dataFromPython = data.toString();
 
 
- });
- res.sendFile(path.join(__dirname, 'public', 't.html'));
- python.on('close', (code) => {
+});
+
+
+ child_obj.on('close', (code) => {
+   console.log(dataFromPython);
+   res.sendFile(path.join(__dirname, dataFromPython, '/t.html'));
+
+
 
 });
 
