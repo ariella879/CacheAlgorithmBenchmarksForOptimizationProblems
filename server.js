@@ -9,7 +9,7 @@ const path = require('path');
 //function that represents the express module
 //best practice to call it app
 const app = express();
-app.use(express.static(__dirname))
+app.use(express.static(__dirname));
 
 const inputs= [];
 
@@ -29,40 +29,24 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.get("/", function(req, res){ //sends mainpage to browser
   res.render("mainpage"); //send browser response
 });
+
 //sending data to server
 //post to our home route
-app.post("/", function(req, res) { //takes input and stores it in the array
-
+app.post("/", function(req, res){ //takes input and stores it in the array
   var input = req.body.input;
-  var dataFromPython = '';
-
   if(req.body.input){ //if user enters information
-
- // spawn new child process to call the python script
-    const child_obj = spawn('python', ['problem_chooser.py', input]); //spawns a child process
-
- // collect data from script
-
-  child_obj.stdout.on('data', function (data) {
-  	dataFromPython = data.toString();
-
-
+    // spawn new child process to call the python script
+    const problem_chooser = spawn('python', ['problem_chooser.py', input]);
+    problem_chooser.stdout.on('data', (response_path) => {
+      //console.log("hex is: ", response_path);
+      //p1 = response_path.toString();
+      //p1 = p1.trim();
+      //y = path.join(__dirname, p1, 't.html');
+      //console.log("Path is", y);
+      res.sendFile('/Users/ariella/Desktop/untouched/polar-anchorage-92883/2020__10__29__18__19__21/t.html');
+    });
+  }
 });
-
-
- child_obj.on('close', (code) => {
-   console.log(dataFromPython);
-   res.sendFile(path.join(__dirname, dataFromPython, '/t.html'));
-
-
-
-});
-
-
-}});
-
-
-
 
 //listen on a specific port for any http requests with a callback
 //anonymous function callback using a console log
