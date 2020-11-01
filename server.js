@@ -30,21 +30,26 @@ app.get("/", function(req, res){ //sends mainpage to browser
   res.render("mainpage"); //send browser response
 });
 
+
+
 //sending data to server
 //post to our home route
 app.post("/", function(req, res){ //takes input and stores it in the array
   var input = req.body.input;
-  if(req.body.input){ //if user enters information
-    // spawn new child process to call the python script
+  if(req.body.input){ 
     const problem_chooser = spawn('python', ['problem_chooser.py', input]);
-    problem_chooser.stdout.on('data', (response_path) => {
-      //console.log("hex is: ", response_path);
-      //p1 = response_path.toString();
-      //p1 = p1.trim();
-      //y = path.join(__dirname, p1, 't.html');
-      //console.log("Path is", y);
-      res.sendFile('/Users/ariella/Desktop/untouched/polar-anchorage-92883/2020__10__29__18__19__21/t.html');
-    });
+    problem_chooser.stdout.on(
+    	'data', 
+    	(response_path) => {
+        // 1 copy everything in response_path.toString().trim() to the static location 
+        //     (NB: problem chooser should only send back the path)
+        // 2 res.sendFile( THE STATIC LOCATION / t.html  )
+
+
+
+        //res.sendFile(response_path.toString().trim());
+      }
+    );
   }
 });
 
